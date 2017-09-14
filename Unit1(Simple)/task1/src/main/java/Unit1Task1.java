@@ -1,4 +1,3 @@
-import java.util.Arrays;
 
 /**
  * 1. Программа возвращает 2-й по величине элемент набора чисел.
@@ -17,31 +16,6 @@ public class Unit1Task1 {
         else { throw new RuntimeException("Входящий массив пуст"); }
 
     } // main()
-
-    /**
-     * Получить число, 2-й по величине элемент в наборе чисел.
-     *
-     */
-    private static int getPrevBigElem(String... args) {
-
-        // Проверка массива на типы входящих данных
-
-        // на "НЕ ЧИСЛО"
-        if ( isArrayOfNumbers(args) ) {
-
-            // на Float
-            if ( isArrayOfFloats(args) ) {
-
-                // TO-DO
-            } else {
-
-                // на Integer
-                isArrayOfIntegers();
-            }
-        } else { throw new RuntimeException("Элементы набора являются не числами"); }
-
-        return Integer.parseInt(sort(args)[args.length - 1]);
-    } // getPrevBigElem()
 
     /**
      * Являются ли элементы массива числами.
@@ -82,16 +56,38 @@ public class Unit1Task1 {
     } // isArrayOfFloats()
 
     /**
-     * Сортировка массива.
+     * Получить число, 2-й по величине элемент в наборе чисел.
      *
-     * @param args command-line args
-     * @return sorted array
      */
-    private static String[] sort(String... args) {
+    private static int getPrevBigElem(String... args) {
 
-        String[] result = new String[args.length];
+        // Проверка массива на типы входящих данных
 
-        return new String[1];
-    } // sort()
+        // на "НЕ ЧИСЛО"
+        if ( isArrayOfNumbers(args) ) {
+
+            // на Float
+            if ( isArrayOfFloats(args) ) {
+
+                // TO-DO
+            } else {
+
+                // на Integer
+                isArrayOfIntegers();
+            }
+        } else { throw new RuntimeException("Элементы набора являются не числами"); }
+
+        return Integer.parseInt(sort(args)[args.length - 1]);
+    } // getPrevBigElem()
+
+    /**
+     *
+     */
+    private static void swap(int a, int b) {
+
+        int tmp = a;
+        a = b;
+        b = tmp;
+    } // swap()
 
 } // Unit1Task1
