@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>su.jet.intern.timurkashapov</groupId>
-    <artifactId>Unit1-Task1</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>Unit1Task1</artifactId>
+    <version>1.0</version>
 
     <build>
         <plugins>
