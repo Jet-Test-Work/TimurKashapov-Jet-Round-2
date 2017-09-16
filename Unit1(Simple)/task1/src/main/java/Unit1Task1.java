@@ -1,3 +1,4 @@
+import java.util.Arrays;
 
 /**
  * 1. Программа возвращает 2-й по величине элемент набора чисел.
@@ -10,18 +11,13 @@
  *
  *     Предполагается что входной набор чисел является набором целых или вещественных чисел,
  *     набор подается на вход программе через системную консоль и при этом проверяются несколько условий:
- *         - если в наборе имеется нечисловые символы - то набор относится как нечисловой и не обрабатывается.
- *         - если в наборе имеется хотя бы одно вещественное число - то весь набор чисел приводится
- *           к вещественным числам и обрабатывается как набор вещественных чисел.
+ *         - если в наборе имеются нечисловые символы - то набор относится как нечисловой и не обрабатывается.
+ *         - если в наборе имеются вещественные числа - то они приводятся к целочисленным.
  *         - программа не обрабатывает сверхбольшие числа.
  *
- *     Алгоритм:
- *         - Берутся два элемента с разных концов числового набора и, поочерёдно сравнивая с другими элементами
- *           заменяются если другой элемент являтся большим по величине, далее двигаются на встречу друг другу.
- *         - Элемент, взятый с начала набора, именуется как left.
- *         - Элемент, взятый с конца набора, именуется как right.
- *         - При достижении точки "встречи" двух элементов, они сравниваются между собой -
- *           меньший элемент есть число 2-ое по величине из набора чисел.
+ *     Алгоритмы:
+ *         - Алгоритм разбиения.
+ *         - Алгоритм быстрой сортировки.
  *
  * @author Timur Kashapov
  * @since 0.0.1
@@ -31,114 +27,95 @@
 public class Unit1Task1 {
 
     /**
-     *
-     * @param args commandline arguments.
-     */
-    public static void main(String... args) {
-
-        // Проверка входных данных
-        //
-        // Пустой ?
-        if ( args != null ) {
-
-            // "НЕ ЧИСЛО" ?
-            if ( isArrayOfNumbers(args) ) {
-
-                // Float ?
-                if ( isArrayOfFloats(args) ) {
-
-                    getPrevBigElemOfFloats(args);
-
-                } else { getPrevBigElemOfInt(args); }
-            } else { throw new RuntimeException("Элементы набора являются не числами"); }
-        } else { throw new RuntimeException("Входящий массив пуст"); }
-    } // main()
-
-    /**
-     * Являются ли элементы массива числами.
+     * Являются ли элементы массива натуральными числами.
      *
      * @param args commandline arguments
      * @return boolean
      */
-    private static boolean isArrayOfNumbers(String... args) {
+    private static boolean isArrayOfNumbers(String[] args) throws RuntimeException {
 
-        boolean result = false;
-
-        if (args == null);
-        
+        boolean result = true;
+        // Проверяемый символ
+        char ch;
+        // По элементам набора
+        for (int i = 0; i < args.length; ++i) {
+            // По символам элемента
+            for (int j = 0; j < args[i].length(); ++j) {
+                // Если
+                // длина элемента больше одного символа,
+                // проверяется первый символ,
+                // следующие за первым символом - цифры
+                // - то этот символ интерпретируем как числовой знак и пропускаем итерацию.
+                if ( args[i].length() > 1 && j == 0 && args[i].charAt(j + 1) >= '0' && args[i].charAt(j + 1) <= '9') continue;
+                // иначе проверяем символ на цифру.
+                else {
+                    ch    = args[i].charAt(j);
+                    if ( ! (ch >= '0' && ch <= '9') ) {
+                        result = false;
+                        throw new RuntimeException("Элементы набора являются не числами");
+                    }
+                }
+            }
+        }
         return result;
     } // isArrayOfNumbers()
 
     /**
-     * Являются ли элементы массива целыми числами.
+     * Вычислить 2-ой во величине элемент набора чисел.
      *
-     * @param args commandline arguments
-     * @return boolean
-     */
-    private static boolean isArrayOfIntegers(String... args) {
-
-        return false;
-    } // isArrayOfIntegers()
-
-    /**
-     * Являются ли элементы массива вещественными числами.
      *
-     * @param args commandline arguments
-     * @return boolean
+     * @return integer;
      */
-    private static boolean isArrayOfFloats(String... args) {
+    private static int calcPrevBigElemOfInt(String[] args) {
 
-        return false;
+        int[] custom = new int[args.length];
+        System.out.println(Arrays.toString(args));
 
-    } // isArrayOfFloats()
+        for (int i = 0; i < args.length; i++) { custom[i] = Integer.parseInt(args[i]); } // for i
+        System.out.println(Arrays.toString(custom));
 
-    /**
-     *
-     * @param args commandline arguments.
-     */
-    private static void getPrevBigElemOfFloats(String... args) {
+        int left, right;
 
-    } // getPrevBigElemOfFloats()
+
+        return 1;
+    } // calcPrevBigElemOfInt(
 
     /**
      * Получить число, 2-й по величине элемент в наборе чисел.
      *
      */
-    private static int getPrevBigElemOfInt(String... args) {
+    public static int getPrevBigElemOfInt(String[] args) throws RuntimeException {
 
-        // Массив для преобразования исходного набора в целочисленный.
-        //
-        int[] custom = new int[args.length];
-        for (int i = 0; i < args.length; i++) { custom[i] = Integer.parseInt(args[i]); }
+        int result = 0;
 
-        // Переменные алгоритма.
+        // Проверка входных данных
         //
-        int
-                k = 0,
-                j = custom.length - 1,
-                i = 0,
-                left = custom[0],
-                right = custom[custom.length - 1],
-                end = custom.length;
+        // Набор не пустой ?
+        if ( args != null ) {
+            // Набор числовой ?
+            if ( isArrayOfNumbers(args) ) {
+                // Набор соостоит из более чем 2-ух элементов ?
+                if (args.length > 2) { result = calcPrevBigElemOfInt(args); }
+                // Если набор состоит из 2-ух элементов - возвращаем меньший.
+                else if ( args.length == 2 ) {
+                    int a = Integer.parseInt(args[0]);
+                    int b = Integer.parseInt(args[1]);
+                    result = a < b  ? a : b ;
+                }
+                else { throw new RuntimeException("Входящий набор состоит из одного элемента"); }
+            }
+        } else { throw new RuntimeException("Входящий набор пуст"); }
 
-        // Являются ли два крайних элемента равным друг другу.
-        // и не являются ли все числа в наборе одинаковыми.
-        //
-        while ( left == right ) {
-            left = custom[++i];
-            if ( --end < 0 ) throw new RuntimeException("В наборе все числа одинаковые") ;
-        } // while
-
-        // Алгоритм.
-        //
-        while ( ++k < --j ) {
-            if ( left  < custom[k] ) { int tmp = left;  left  = custom[k]; custom[k] = tmp; }
-            if ( right < custom[j] ) { int tmp = right; right = custom[j]; custom[j] = tmp; }
-        } // while
-
-        // Возврат 2-ого по величине числа из набора чисел.
-        //
-        return left < right ? left : right ;
+        return result;
     } // getPrevBigElemOfInt()
 
+    /**
+     *
+     * @param args commandline arguments.
+     */
+    public static void main(String[] args) {
+
+        getPrevBigElemOfInt(args);
+
+    } // main()
 } // Unit1Task1
