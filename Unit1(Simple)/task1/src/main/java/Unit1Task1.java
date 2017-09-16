@@ -9,15 +9,14 @@ import java.util.Arrays;
  *
  *     Решение задачи производится итерациями.
  *
- *     Предполагается что входной набор чисел является набором целых или вещественных чисел,
+ *     Предполагается что входной набор чисел является набором целых чисел или вещественных чисел,
  *     набор подается на вход программе через системную консоль и при этом проверяются несколько условий:
  *         - если в наборе имеются нечисловые символы - то набор относится как нечисловой и не обрабатывается.
  *         - если в наборе имеются вещественные числа - то они приводятся к целочисленным.
  *         - программа не обрабатывает сверхбольшие числа.
  *
- *     Алгоритмы:
- *         - Алгоритм разбиения.
- *         - Алгоритм быстрой сортировки.
+ *     Алгоритм:
+ *         - пузырьковая сортировка.
  *
  * @author Timur Kashapov
  * @since 0.0.1
@@ -72,12 +71,25 @@ public class Unit1Task1 {
         System.out.println(Arrays.toString(args));
 
         for (int i = 0; i < args.length; i++) { custom[i] = Integer.parseInt(args[i]); } // for i
+
+        int tmp, left, right;
+        // Пузырьковая сортировка
+        //
+        for (int i = custom.length - 1; i > 1; --i) {
+            for (int j = 0; j < i; ++j) {
+                left  = custom[j];
+                right = custom[j + 1];
+                if ( left >= right ) { custom[j] = right; custom[j + 1] = left; }
+            } // for j
+        } // for i
+
         System.out.println(Arrays.toString(custom));
 
-        int left, right;
+        for (int i = custom.length; i < custom.length; i++) {
 
+        }
 
-        return 1;
+        return custom[custom.length - 2];
     } // calcPrevBigElemOfInt(
 
     /**
@@ -115,7 +127,7 @@ public class Unit1Task1 {
      */
     public static void main(String[] args) {
 
-        getPrevBigElemOfInt(args);
+        System.out.println( getPrevBigElemOfInt(args) );
 
     } // main()
 } // Unit1Task1
