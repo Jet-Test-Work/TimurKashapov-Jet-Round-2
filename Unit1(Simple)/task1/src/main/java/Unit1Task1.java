@@ -27,35 +27,34 @@ public class Unit1Task1 {
      */
     private static String[] getInput() {
 
-        System.out.printf("\nПрограмма возвращает 2-й по величине элемент набора чисел.\n");
-
         Scanner  scan = new Scanner(System.in);
         String[] dist;
-        Integer  n = 0;
+        String  n ;
+        Integer d = 0;
 
         do {
-            System.out.printf("\nКаково количество элементов ? : ");
-            n = scan.nextInt();
-            if (n < 2) System.out.printf("\nКоличество элементов должно быть более одного! Повторите.");
-        } while (n < 2);
+            System.out.printf("\nВведите количество элементов, составляющих набор чисел: ");
+            n = scan.next();
+            if ( isNumber(n) ) { d = Integer.parseInt(n); break; }
+            else System.out.println("\nНекорректный ввод! Повторите ввод числа.");
+        } while (d < 2);
 
-        System.out.printf("Количество элементов: [%d]\n",n);
-
-        dist = new String[n];
+        dist = new String[d];
 
         do {
             System.out.printf("\nВведите набор чисел : ");
             int i = 0;
             while( i < dist.length ) {
                 dist[i] = scan.next(); ++i;
-                if ( dist.length > n || dist.length < n ) {
+                if ( dist.length > d || dist.length < d ) {
                     System.out.println("\nВвод набора чисел произведен не корректно! Повторите.");
                     break;
                 }
             }
-        } while ( dist.length > n || dist.length < n);
 
-        if ( ! verifyInput(dist) ) { throw new RuntimeException("Набор чисел не верифицирован"); }
+            if ( ! verifyInput(dist) ) { System.err.println("Набор чисел не верифицирован. Повторите ввод"); continue; }
+
+        } while ( dist.length > d || dist.length < d);
 
         scan.close();
 
@@ -83,6 +82,7 @@ public class Unit1Task1 {
 
                 // Набор числовой ?
                 if (isArrayOfNumbers(src)) { result = true; }
+                else { result = false; }
 
             } else { throw new RuntimeException("Входящий набор состоит из одного элемента."); }
         } else { throw new RuntimeException("Входящий набор пуст."); }
@@ -92,45 +92,59 @@ public class Unit1Task1 {
     } // verifyInput()
 
     /**
-     * Являются ли элементы набора натуральными числами.
-     * Проверка на положительные и отрицательные числа.
+     * Проверка строки на число.
      *
-     * @param args входнные данные.
+     * @param str исходная строка.
      * @return подтверждение.
      */
-    private static boolean isArrayOfNumbers(String[] args) throws RuntimeException {
+    private static boolean isNumber(String str) {
+
+        boolean result = true;
+
+        char ch;
+        int  len = str.length();
+
+        // По символам элемента
+        for (int i = 0; i < str.length(); ++i) {
+
+            // Текущий символ строки.
+            ch = str.charAt(i);
+            // Если
+            // 1. длина строки больше одного символа И
+            // 2. проверяется первый символ И
+            // 3. следующие за первым символом - цифра (0 <= ch <= 9)
+            // - то этот символ интерпретируем как числовой знак и пропускаем итерацию.
+            if (len > 1  && i == 0 && ch == '-' && ch + 1 >= '0' && ch + 1 <= '9') continue;
+            // иначе проверяем символ на символ цифры.
+            else { if ( ! (ch >= '0' && ch <= '9') ) { result = false; break; } }
+        }
+        return result;
+
+    } // isNumber()
+
+    /**
+     * Являются ли элементы набора натуральными числами.
+     * Проверка осуществляется на положительные и отрицательные числа.
+     *
+     * @param src входнные данные.
+     * @return подтверждение.
+     */
+    private static boolean isArrayOfNumbers(String[] src) throws RuntimeException {
 
         // Подразумеваем что набор является числовым.
         boolean result = true;
-        // Проверяемый символ
-        char ch;
 
         // Проверка на числовой тип
         //
-        for (int i = 0; i < args.length; ++i) {
-            // По символам элемента
-            for (int j = 0; j < args[i].length(); ++j) {
-                // Если
-                // длина элемента больше одного символа,
-                // проверяется первый символ,
-                // следующие за первым символом - цифры
-                // - то этот символ интерпретируем как числовой знак и пропускаем итерацию.
-                if (args[i].length() > 1 &&
-                        j == 0 &&
-                        args[i].charAt(j)     == '-' &&
-                        args[i].charAt(j + 1) >= '0' &&
-                        args[i].charAt(j + 1) <= '9') continue;
-                // иначе проверяем символ на цифру.
-                else {
-                    ch = args[i].charAt(j);
-                    if ( ! (ch >= '0' && ch <= '9') ) {
-                        result = false;
-                        System.err.println(Arrays.toString(args));
-                        throw new RuntimeException("Элементы набора являются не числами ---> " + ch);
-                    }
-                }
+        for (int i = 0; i < src.length; ++i) {
+
+            // Если в строке не числовой символ - выбросить исключение.
+            if ( ! isNumber(src[i]) ) {
+                System.out.println( "\n" + Arrays.toString(src));
+                System.out.println("Элементы набора являются не числами ---> " + src[i] + "\n");
             }
-        }
+        } // for i
+
         return result;
     } // isArrayOfNumbers()
 
@@ -173,7 +187,7 @@ public class Unit1Task1 {
             }
         } // for i
 
-        System.out.println(sMax);
+        System.out.printf("\nВторое по величине число в наборе: %d\n\n", sMax);
 
         return sMax;
 
@@ -199,6 +213,8 @@ public class Unit1Task1 {
      * @param args commandline arguments.
      */
     public static void main(String[] args) {
+
+        System.out.printf("\nПрограмма возвращает 2-й по величине элемент набора чисел.\n");
 
         if (args.length > 1){ if ( verifyInput(args) ) getSecondBigNumber(toIntegers(args)); }
         else getSecondBigNumber(toIntegers(getInput()));
