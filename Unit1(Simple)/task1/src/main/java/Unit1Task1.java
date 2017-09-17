@@ -21,6 +21,15 @@ import java.util.Scanner;
 public class Unit1Task1 {
 
     /**
+     * Упрощённая запись System.out.println();
+     *
+     * @param str строка для вывода.
+     */
+    private static void println(String str) {
+        System.out.println(str);
+    } // println()
+
+    /**
      * Получить набор чисел.
      *
      * @return набор чисел.
@@ -29,41 +38,39 @@ public class Unit1Task1 {
 
         Scanner  scan = new Scanner(System.in);
         String[] dist;
-        String  n ;
-        Integer d = 0;
+        String   n ;
+        Integer  d = 0;
 
         do {
             System.out.printf("\nВведите количество элементов, составляющих набор чисел: ");
             n = scan.next();
-            if ( isNumber(n) ) { d = Integer.parseInt(n); break; }
-            else System.out.println("\nНекорректный ввод! Повторите ввод числа.");
+            if ( isNumber(n) ) {
+                d = Integer.parseInt(n);
+                if (d < 2) println("Введенное количество элементов набора некорректно! Повторите. ");
+            }
+            else println("\nНекорректный ввод! Повторите ввод числа.");
         } while (d < 2);
 
         dist = new String[d];
 
         do {
             System.out.printf("\nВведите набор чисел : ");
+
             int i = 0;
-            while( i < dist.length ) {
-                dist[i] = scan.next(); ++i;
-                if ( dist.length > d || dist.length < d ) {
-                    System.out.println("\nВвод набора чисел произведен не корректно! Повторите.");
-                    break;
-                }
-            }
+            while( i < dist.length ) { dist[i] = scan.next(); ++i; }
 
-            if ( ! verifyInput(dist) ) { System.err.println("Набор чисел не верифицирован. Повторите ввод"); continue; }
+            if ( ! verifyInput(dist) ) { println("Набор чисел не верифицирован. Повторите ввод"); }
+            else break;
 
-        } while ( dist.length > d || dist.length < d);
+        } while ( true );
 
         scan.close();
 
         return dist;
-
     } // getInput()
 
     /**
-     * Проверка вхоных данных на корректность.
+     * Проверка входных данных на корректность.
      *
      * @param src входные данные.
      * @return подтверждение.
@@ -82,10 +89,9 @@ public class Unit1Task1 {
 
                 // Набор числовой ?
                 if (isArrayOfNumbers(src)) { result = true; }
-                else { result = false; }
 
-            } else { throw new RuntimeException("Входящий набор состоит из одного элемента."); }
-        } else { throw new RuntimeException("Входящий набор пуст."); }
+            } else { println("Входящий набор состоит из одного элемента!"); }
+        } else { println("Входящий набор пуст!"); }
 
         return result;
 
@@ -99,7 +105,7 @@ public class Unit1Task1 {
      */
     private static boolean isNumber(String str) {
 
-        boolean result = true;
+        boolean ok = true;
 
         char ch;
         int  len = str.length();
@@ -114,11 +120,11 @@ public class Unit1Task1 {
             // 2. проверяется первый символ И
             // 3. следующие за первым символом - цифра (0 <= ch <= 9)
             // - то этот символ интерпретируем как числовой знак и пропускаем итерацию.
-            if (len > 1  && i == 0 && ch == '-' && ch + 1 >= '0' && ch + 1 <= '9') continue;
+            if (len > 1  && i == 0 && ch == '-' && str.charAt(i + 1) >= '0' && str.charAt(i + 1) <= '9') continue;
             // иначе проверяем символ на символ цифры.
-            else { if ( ! (ch >= '0' && ch <= '9') ) { result = false; break; } }
+            else { if ( ! (ch >= '0' && ch <= '9') ) { ok = false; break; } }
         }
-        return result;
+        return ok;
 
     } // isNumber()
 
@@ -129,10 +135,12 @@ public class Unit1Task1 {
      * @param src входнные данные.
      * @return подтверждение.
      */
-    private static boolean isArrayOfNumbers(String[] src) throws RuntimeException {
+    private static boolean isArrayOfNumbers(String[] src) {
 
         // Подразумеваем что набор является числовым.
-        boolean result = true;
+        boolean ok = true;
+        // Счетчик невалидных символов.
+        int count  = 0;
 
         // Проверка на числовой тип
         //
@@ -140,13 +148,31 @@ public class Unit1Task1 {
 
             // Если в строке не числовой символ - выбросить исключение.
             if ( ! isNumber(src[i]) ) {
-                System.out.println( "\n" + Arrays.toString(src));
-                System.out.println("Элементы набора являются не числами ---> " + src[i] + "\n");
+                println( "\n" + Arrays.toString(src));
+                println("Элементы набора являются не числами ---> " + src[i] + "\n");
+                ++count;
             }
         } // for i
 
-        return result;
+        if (count > 0) ok = false;
+
+        return ok;
     } // isArrayOfNumbers()
+
+    /**
+     * Равнозначность элементов набора чисел.
+     *
+     * @param src входные данные.
+     * @return подтверждение.
+     */
+    private static boolean isArrayOfSameNumbers(Integer[] src) {
+
+        boolean ok = true;
+
+        for (int i = 1; i < src.length; ++i) { if ( ! src[i - 1].equals(src[i]) ) { ok = false; break; } } // for i
+
+        return ok;
+    } // isArrayOfSameNumbers()
 
     /**
      * Конвертация элементов строкового типа данных в числовой тип данных.
@@ -172,11 +198,11 @@ public class Unit1Task1 {
         Integer fMax = Integer.MIN_VALUE, sMax = Integer.MIN_VALUE; // first, second
 
         // Если набор состоит из 2-ух элементов - возвращаем меньший.
-        if ( src.length == 2 ) { sMax = src[0] < src[1]  ? src[0] : src[1]; }
+        if ( src.length == 2 && ! isArrayOfSameNumbers(src) ) { sMax = src[0] < src[1]  ? src[0] : src[1]; }
         // Если набор состоит из одного числового элемента - возвращаем его.
         else if ( src.length == 1 ) { sMax = src[0]; }
         // Если в наборе все числа одинаковые - возвращаем одно число.
-        else if ( isArrayOfSameNumbers(src) ) { sMax = src[0]; }
+        else if ( isArrayOfSameNumbers(src) ) { println("Элементы набора чисел равнозначны друг другу!"); sMax = src[0]; }
         // Иначе получаем 2-ой по величине элемент из набора чисел.
         else {
             for (Integer a : src) {
@@ -194,29 +220,16 @@ public class Unit1Task1 {
     } // getSecondBigNumber()
 
     /**
-     * Равнозначность элементов набора чисел.
-     *
-     * @param src входные данные.
-     * @return подтверждение.
-     */
-    private static boolean isArrayOfSameNumbers(Integer[] src) {
-
-        boolean result = false;
-
-        for (int i = 1; i < src.length; i++) { if (src[i - 1].equals(src[i])) result = true; } // for i
-        
-        return result;
-    } // isArrayOfSameNumbers()
-
-    /**
      * Main.
      * @param args commandline arguments.
      */
     public static void main(String[] args) {
 
-        System.out.printf("\nПрограмма возвращает 2-й по величине элемент набора чисел.\n");
+        println("\nПрограмма возвращает 2-й по величине элемент набора чисел.\n");
 
+        // Ввод аргументами через системную консоль.
         if (args.length > 1){ if ( verifyInput(args) ) getSecondBigNumber(toIntegers(args)); }
+        // Интерактивный ввод через системную консоль.
         else getSecondBigNumber(toIntegers(getInput()));
 
     } // main()
