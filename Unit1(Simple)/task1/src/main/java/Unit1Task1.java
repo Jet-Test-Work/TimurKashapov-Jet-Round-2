@@ -1,22 +1,17 @@
 import java.util.Arrays;
+import java.util.Scanner;
 
 /**
  * 1. Программа возвращает 2-й по величине элемент набора чисел.
  *
- *
- *
  * Решение:
  *
- *     Решение задачи производится итерациями.
- *
- *     Предполагается что входной набор чисел является набором целых чисел или вещественных чисел,
- *     набор подается на вход программе через системную консоль и при этом проверяются несколько условий:
+ *     Предполагается что входной набор чисел является набором целых чисел,
+ *     набор подается на вход программе через системную консоль и посредством аргументов на исполняемый jar файл,
+ *     при этом проверяются несколько условий:
  *         - если в наборе имеются нечисловые символы - то набор относится как нечисловой и не обрабатывается.
  *         - если в наборе имеются вещественные числа - то они приводятся к целочисленным.
  *         - программа не обрабатывает сверхбольшие числа.
- *
- *     Алгоритм:
- *         - пузырьковая сортировка.
  *
  * @author Timur Kashapov
  * @since 0.0.1
@@ -26,17 +21,92 @@ import java.util.Arrays;
 public class Unit1Task1 {
 
     /**
-     * Являются ли элементы массива натуральными числами.
+     * Получить набор чисел.
      *
-     * @param args commandline arguments
-     * @return boolean
+     * @return набор чисел.
+     */
+    private static String[] getInput() {
+
+        System.out.printf("\nПрограмма возвращает 2-й по величине элемент набора чисел.\n");
+
+        Scanner  scan = new Scanner(System.in);
+        String[] dist;
+        Integer  n = 0;
+
+        do {
+            System.out.printf("\nКаково количество элементов ? : ");
+            n = scan.nextInt();
+            if (n < 2) System.out.printf("\nКоличество элементов должно быть более одного! Повторите.");
+        } while (n < 2);
+
+        System.out.printf("Количество элементов: [%d]\n",n);
+
+        dist = new String[n];
+
+        do {
+            System.out.printf("\nВведите набор чисел : ");
+            int i = 0;
+            while( i < dist.length ) {
+                dist[i] = scan.next(); ++i;
+                if ( dist.length > n || dist.length < n ) {
+                    System.out.println("\nВвод набора чисел произведен не корректно! Повторите.");
+                    break;
+                }
+            }
+        } while ( dist.length > n || dist.length < n);
+
+        if ( ! verifyInput(dist) ) { throw new RuntimeException("Набор чисел не верифицирован"); }
+
+        scan.close();
+
+        return dist;
+
+    } // getInput()
+
+    /**
+     * Проверка вхоных данных на корректность.
+     *
+     * @param src входные данные.
+     * @return подтверждение.
+     */
+    private static boolean verifyInput(String[] src) {
+
+        boolean result = false;
+
+        // Проверка входных данных на корректность.
+        //
+        // Набор не пустой ?
+        if ( src[0] != null ) {
+
+            // Набор состоит из более чем 2-ух элементов ?
+            if (src.length >= 2) {
+
+                // Набор числовой ?
+                if (isArrayOfNumbers(src)) { result = true; }
+
+            } else { throw new RuntimeException("Входящий набор состоит из одного элемента."); }
+        } else { throw new RuntimeException("Входящий набор пуст."); }
+
+        return result;
+
+    } // verifyInput()
+
+    /**
+     * Являются ли элементы набора натуральными числами.
+     * Проверка на положительные и отрицательные числа.
+     *
+     * @param args входнные данные.
+     * @return подтверждение.
      */
     private static boolean isArrayOfNumbers(String[] args) throws RuntimeException {
 
+        // Подразумеваем что набор является числовым.
         boolean result = true;
         // Проверяемый символ
         char ch;
-        // По элементам набора
+
+        // Проверка на числовой тип
+        //
         for (int i = 0; i < args.length; ++i) {
             // По символам элемента
             for (int j = 0; j < args[i].length(); ++j) {
@@ -45,13 +115,18 @@ public class Unit1Task1 {
                 // проверяется первый символ,
                 // следующие за первым символом - цифры
                 // - то этот символ интерпретируем как числовой знак и пропускаем итерацию.
-                if ( args[i].length() > 1 && j == 0 && args[i].charAt(j + 1) >= '0' && args[i].charAt(j + 1) <= '9') continue;
+                if (args[i].length() > 1 &&
+                        j == 0 &&
+                        args[i].charAt(j)     == '-' &&
+                        args[i].charAt(j + 1) >= '0' &&
+                        args[i].charAt(j + 1) <= '9') continue;
                 // иначе проверяем символ на цифру.
                 else {
-                    ch    = args[i].charAt(j);
+                    ch = args[i].charAt(j);
                     if ( ! (ch >= '0' && ch <= '9') ) {
                         result = false;
-                        throw new RuntimeException("Элементы набора являются не числами");
+                        System.err.println(Arrays.toString(args));
+                        throw new RuntimeException("Элементы набора являются не числами ---> " + ch);
                     }
                 }
             }
@@ -60,74 +135,73 @@ public class Unit1Task1 {
     } // isArrayOfNumbers()
 
     /**
-     * Вычислить 2-ой во величине элемент набора чисел.
+     * Конвертация элементов строкового типа данных в числовой тип данных.
      *
-     *
-     * @return integer;
+     * @param src входные данные строкового типа.
+     * @return выходные данные числово типа.
      */
-    private static int calcPrevBigElemOfInt(String[] args) {
+    private static Integer[] toIntegers(String[] src) {
+        Integer dist[] = new Integer[src.length];
+        for (int i = 0; i < src.length; ++i) { dist[i] = Integer.parseInt(src[i]); } // for i
+        return dist;
+    } // toIntegers()
 
-        int[] custom = new int[args.length];
-        System.out.println(Arrays.toString(args));
+    /**
+     * Получить 2-ое по величине число из набора чисел.
+     *
+     * @param src входные данные.
+     * @return 2-ое по величине число из набора данных.
+     */
+    public static Integer getSecondBigNumber(Integer[] src) {
 
-        for (int i = 0; i < args.length; i++) { custom[i] = Integer.parseInt(args[i]); } // for i
+        // Первое и второе результатные максимальные значения.
+        Integer fMax = Integer.MIN_VALUE, sMax = Integer.MIN_VALUE; // first, second
 
-        int tmp, left, right;
-        // Пузырьковая сортировка
-        //
-        for (int i = custom.length - 1; i > 1; --i) {
-            for (int j = 0; j < i; ++j) {
-                left  = custom[j];
-                right = custom[j + 1];
-                if ( left >= right ) { custom[j] = right; custom[j + 1] = left; }
-            } // for j
+        // Если набор состоит из 2-ух элементов - возвращаем меньший.
+        if ( src.length == 2 ) { sMax = src[0] < src[1]  ? src[0] : src[1]; }
+        // Если набор состоит из одного числового элемента - возвращаем его.
+        else if ( src.length == 1 ) { sMax = src[0]; }
+        // Если в наборе все числа одинаковые - возвращаем одно число.
+        else if ( isArrayOfSameNumbers(src) ) { sMax = src[0]; }
+        // Иначе получаем 2-ой по величине элемент из набора чисел.
+        else {
+            for (Integer a : src) {
+                if (fMax < a) {
+                    sMax = fMax;
+                    fMax = a;
+                } else if ((sMax < a)) { sMax = a; }
+            }
         } // for i
 
-        System.out.println(Arrays.toString(custom));
+        System.out.println(sMax);
 
-        for (int i = custom.length; i < custom.length; i++) {
+        return sMax;
 
-        }
-
-        return custom[custom.length - 2];
-    } // calcPrevBigElemOfInt(
+    } // getSecondBigNumber()
 
     /**
-     * Получить число, 2-й по величине элемент в наборе чисел.
+     * Равнозначность элементов набора чисел.
      *
+     * @param src входные данные.
+     * @return подтверждение.
      */
-    public static int getPrevBigElemOfInt(String[] args) throws RuntimeException {
+    private static boolean isArrayOfSameNumbers(Integer[] src) {
 
-        int result = 0;
+        boolean result = false;
 
-        // Проверка входных данных
-        //
-        // Набор не пустой ?
-        if ( args != null ) {
-            // Набор числовой ?
-            if ( isArrayOfNumbers(args) ) {
-                // Набор соостоит из более чем 2-ух элементов ?
-                if (args.length > 2) { result = calcPrevBigElemOfInt(args); }
-                // Если набор состоит из 2-ух элементов - возвращаем меньший.
-                else if ( args.length == 2 ) {
-                    int a = Integer.parseInt(args[0]);
-                    int b = Integer.parseInt(args[1]);
-                    result = a < b  ? a : b ;
-                }
-                else { throw new RuntimeException("Входящий набор состоит из одного элемента"); }
-            }
-        } else { throw new RuntimeException("Входящий набор пуст"); }
-
+        for (int i = 1; i < src.length; i++) { if (src[i - 1].equals(src[i])) result = true; } // for i
+        
         return result;
-    } // getPrevBigElemOfInt()
+    } // isArrayOfSameNumbers()
 
     /**
-     *
+     * Main.
      * @param args commandline arguments.
      */
     public static void main(String[] args) {
 
-        System.out.println( getPrevBigElemOfInt(args) );
+        if (args.length > 1){ if ( verifyInput(args) ) getSecondBigNumber(toIntegers(args)); }
+        else getSecondBigNumber(toIntegers(getInput()));
 
     } // main()
 } // Unit1Task1
