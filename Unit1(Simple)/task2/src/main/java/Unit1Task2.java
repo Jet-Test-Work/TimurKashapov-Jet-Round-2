@@ -93,6 +93,7 @@ public class Unit1Task2 {
         //
         //
         //
+        println("DONE!");
 
         return new Integer[0];
     } // decomposeTheNumber()
@@ -111,7 +112,10 @@ public class Unit1Task2 {
         println("The program performs the decomposition of numbers in a set of simple multipliers.");
 
         // Ввод аргументами через системную консоль.
-        if (args.length > 0) { if ( isNumber(args[0])) { Arrays.toString(getPrimes(args[0])); } }
+        if (args.length > 0) {
+            if ( isNumber(args[0])) { Arrays.toString(getPrimes(args[0])); }
+            else println("Incorrect input!");
+        }
         // Интерактивный ввод через системную консоль.
         else { Arrays.toString(getPrimes(getInput())); }
 
