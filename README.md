@@ -2,17 +2,17 @@
 ___
 
 ### Рабочее окружение:
-Аппаратное обеспечение: _Motherboard ASUS X555LN;_ _Intel Core i5-4210U;_ _8GB DDR3L-1600 PC-12800 SDRAM SODIMM;_ _1TB Toshiba ROM_
+**Аппаратное обеспечение:** _Motherboard ASUS X555LN;_ _Intel Core i5-4210U;_ _8GB DDR3L-1600 PC-12800 SDRAM SODIMM;_ _1TB Toshiba ROM_
 
-Операционная система: _Windows 10 Pro 64-bit Build version 10.0.15063.483 (RS2)_
+**Операционная система:** _Windows 10 Pro 64-bit Build version 10.0.15063.483 (RS2)_
 
-Java: _JDK 1.8.0_144_ _JRE 1.8.0_144-b01_
+**Java:** _JDK 1.8.0_144_ _JRE 1.8.0_144-b01_
 
-Тестирование проекта: _JUnit 4.12_
+**Тестирование проекта:** _JUnit 4.12_
 
-Сборка проекта: _Apache Maven 3.5.0_
+**Сборка проекта:** _Apache Maven 3.5.0_
 
-Система контроля версий: _Git 2.14.1_
+**Система контроля версий:** _Git 2.14.1_
 ___
 
 ### Рабочие каталоги:
