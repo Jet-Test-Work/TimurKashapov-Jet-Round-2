@@ -6,7 +6,7 @@ ___
 * Motherboard ASUS X555LN;
 * Intel Core i5-4210U;
 * 8GB DDR3L-1600 PC-12800 SDRAM SODIMM;
-* 1TB Toshiba 8MB
+* 1TB Toshiba ROM
 
 Операционная система:    
 * Windows 10 Pro 64-bit Build version 10.0.15063.483 (RS2)
