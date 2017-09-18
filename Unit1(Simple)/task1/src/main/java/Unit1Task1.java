@@ -181,8 +181,13 @@ public class Unit1Task1 {
     private static boolean isArrayOfSameNumbers(Integer[] src) {
 
         boolean ok = true;
+        int count  = 0;
 
-        for (int i = 1; i < src.length; ++i) { if ( ! src[i - 1].equals(src[i]) ) { ok = false; break; } } // for i
+        for (int i = 1; i < src.length; ++i) {
+            if ( ! src[i - 1].equals(src[i]) ) {
+                ok = false; break;
+            }
+        } // for i
 
         return ok;
     } // isArrayOfSameNumbers()
@@ -215,7 +220,7 @@ public class Unit1Task1 {
         // Если набор состоит из одного числового элемента - возвращаем его.
         else if ( src.length == 1 ) { sMax = src[0]; }
         // Если в наборе все числа одинаковые - возвращаем одно число.
-        else if ( isArrayOfSameNumbers(src) ) { println("Elements of a set of numbers equivalent to each other!");sMax = src[0]; }
+        else if ( isArrayOfSameNumbers(src) ) { println("Elements of a set of numbers equivalent to each other!"); sMax = src[0]; }
 //            println("Элементы набора чисел равнозначны друг другу!");
         // Иначе получаем 2-ой по величине элемент из набора чисел.
         else {
@@ -223,7 +228,7 @@ public class Unit1Task1 {
                 if (fMax < a) {
                     sMax = fMax;
                     fMax = a;
-                } else if ((sMax < a)) { sMax = a; }
+                } else if ((sMax < a && ! fMax.equals(a))) { sMax = a; }
             }
         } // for i
 
