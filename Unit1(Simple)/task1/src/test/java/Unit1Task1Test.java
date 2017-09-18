@@ -1,3 +1,4 @@
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -5,6 +6,7 @@ import java.util.Enumeration;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 public class Unit1Task1Test {
 
@@ -78,7 +80,22 @@ public class Unit1Task1Test {
     @Test
     public void getSecondBigNumber() throws Exception {
 
-        Integer[] test0 = {20, 50, 66, 2, 1, 5};
+        // Тестирование на некорректное получение требуемого числа.
+        //
+        Integer[] test0 = {10, 20, 20, 10, 5};
+        //
+        assertEquals( Integer.valueOf(10) ,Unit1Task1.getSecondBigNumber(test0));
+
+        // Тестирование на корректное получение требуемого числа.
+        //
+        Integer[] test10 = {20, 50, 66, 2, 1, 5};
+        Integer[] test11 = {0, 0, 6, 2, 0, 5};
+        Integer[] test12 = {-10, -50, 6, 2, 51, 95};
+        //
+        assertEquals( Integer.valueOf(50) ,Unit1Task1.getSecondBigNumber(test10));
+        assertEquals( Integer.valueOf(5) ,Unit1Task1.getSecondBigNumber(test11));
+        assertEquals( Integer.valueOf(51) ,Unit1Task1.getSecondBigNumber(test11));
+
 
     }
 }
