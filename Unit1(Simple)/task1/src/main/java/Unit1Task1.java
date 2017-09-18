@@ -21,10 +21,6 @@ import java.util.Scanner;
  */
 public class Unit1Task1 {
 
-    static {
-        System.setProperty("file.encoding", System.getProperty("sun.jnu.encoding"));
-    }
-
     /**
      * Упрощённая запись System.out.println();
      *
@@ -47,24 +43,29 @@ public class Unit1Task1 {
         Integer  d = 0;
 
         do {
-            System.out.printf("\nВведите количество элементов, составляющих набор чисел (не менее двух): ");
+            System.out.printf("\nEnter the number of elements of a set of numbers (at least two): ");
+            //System.out.printf("\nВведите количество элементов, составляющих набор чисел (не менее двух): ");
             n = scan.next();
             if ( isNumber(n) ) {
                 d = Integer.parseInt(n);
-                if (d < 2) println("Введенное количество элементов набора некорректно! Повторите. ");
+                if (d < 2) println("Introduced a number of elements of a set is incorrect! Repeat, please.");
+//                        ;println("Введенное количество элементов набора некорректно! Повторите. ");
             }
-            else println("Некорректный ввод! Повторите ввод числа.");
+            else println("Incorrect input! Retype the numbers, please.");
+//            println("Некорректный ввод! Повторите ввод числа.");
         } while (d < 2);
 
         dist = new String[d];
 
         do {
-            System.out.printf("\nВведите набор чисел : ");
+            System.out.printf("\nPlease enter a set of numbers: ");
+//            System.out.printf("\nВведите набор чисел : ");
 
             int i = 0;
             while( i < dist.length ) { dist[i] = scan.next(); ++i; }
 
-            if ( ! verifyInput(dist) ) { println("Набор чисел не верифицирован. Повторите ввод"); }
+            if ( ! verifyInput(dist) ) { println("The set of integers is not verified. Re-enter, please"); }
+//            println("Набор чисел не верифицирован. Повторите ввод");
             else break;
 
         } while ( true );
@@ -97,9 +98,12 @@ public class Unit1Task1 {
                     // Набор числовой ?
                     if (isArrayOfNumbers(src)) { result = true; }
 
-                } else { println("Входящий набор состоит из менее двух элементов!"); }
-            } else { println("Входящий набор пуст!"); }
-        } else { println("Входящий набор NULL!"); }
+                } else { println("Incoming set consists of at least two elements!"); }
+//                println("Входящий набор состоит из менее двух элементов!");
+            } else { println("Incoming set is empty!"); }
+//            println("Входящий набор пуст!");
+        } else { println("The incoming set is NULL!"); }
+//        println("Входящий набор NULL!");
 
         return result;
 
@@ -157,7 +161,8 @@ public class Unit1Task1 {
             // Если в строке не числовой символ - выбросить исключение.
             if ( ! isNumber(src[i]) ) {
                 println( "\n" + Arrays.toString(src));
-                println("Элемент набора является не числом ---> " + src[i]);
+                println("The element of the set is not a valid number ---> " + src[i]);
+//                println("Элемент набора является не числом ---> " + src[i]);
                 ++count;
             }
         } // for i
@@ -210,7 +215,8 @@ public class Unit1Task1 {
         // Если набор состоит из одного числового элемента - возвращаем его.
         else if ( src.length == 1 ) { sMax = src[0]; }
         // Если в наборе все числа одинаковые - возвращаем одно число.
-        else if ( isArrayOfSameNumbers(src) ) { println("Элементы набора чисел равнозначны друг другу!"); sMax = src[0]; }
+        else if ( isArrayOfSameNumbers(src) ) { println("Elements of a set of numbers equivalent to each other!");sMax = src[0]; }
+//            println("Элементы набора чисел равнозначны друг другу!");
         // Иначе получаем 2-ой по величине элемент из набора чисел.
         else {
             for (Integer a : src) {
@@ -221,7 +227,8 @@ public class Unit1Task1 {
             }
         } // for i
 
-        System.out.printf("\nВторое по величине число в наборе: %d\n\n", sMax);
+        System.out.printf("\nThe second largest number in the set: %d\n\n", sMax);
+//        System.out.printf("\nВторое по величине число в наборе: %d\n\n", sMax);
 
         return sMax;
 
@@ -233,7 +240,8 @@ public class Unit1Task1 {
      */
     public static void main(String[] args) {
 
-        println("\nПрограмма возвращает 2-й по величине элемент набора чисел.\n");
+        println("\nThe program returns the 2nd largest element of a set of numbers.\n");
+//        println("\nПрограмма возвращает 2-й по величине элемент набора чисел.\n");
 
         // Ввод аргументами через системную консоль.
         if (args.length > 1){ if ( verifyInput(args) ) getSecondBigNumber(toIntegers(args)); }

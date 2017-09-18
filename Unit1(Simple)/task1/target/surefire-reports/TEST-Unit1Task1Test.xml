@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="2" failures="0" name="Unit1Task1Test" time="0.008" errors="0" skipped="0">
+<testsuite tests="2" failures="0" name="Unit1Task1Test" time="0.012" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="T:\Java\jdk1.8.0_144\jre\bin"/>
@@ -56,17 +56,17 @@
     <property name="java.version" value="1.8.0_144"/>
     <property name="java.ext.dirs" value="T:\Java\jdk1.8.0_144\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext"/>
     <property name="sun.boot.class.path" value="T:\Java\jdk1.8.0_144\jre\lib\resources.jar;T:\Java\jdk1.8.0_144\jre\lib\rt.jar;T:\Java\jdk1.8.0_144\jre\lib\sunrsasign.jar;T:\Java\jdk1.8.0_144\jre\lib\jsse.jar;T:\Java\jdk1.8.0_144\jre\lib\jce.jar;T:\Java\jdk1.8.0_144\jre\lib\charsets.jar;T:\Java\jdk1.8.0_144\jre\lib\jfr.jar;T:\Java\jdk1.8.0_144\jre\classes"/>
-    <property name="sun.stderr.encoding" value="cp65001"/>
+    <property name="sun.stderr.encoding" value="cp437"/>
     <property name="java.vendor" value="Oracle Corporation"/>
     <property name="maven.home" value="T:\Apache\apache-maven-3.5.0\bin\.."/>
     <property name="file.separator" value="\"/>
     <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
-    <property name="sun.stdout.encoding" value="cp65001"/>
+    <property name="sun.stdout.encoding" value="cp437"/>
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="Unit1Task1Test" name="verifyInput" time="0.007"/>
-  <testcase classname="Unit1Task1Test" name="getSecondBigNumber" time="0.001"/>
+  <testcase classname="Unit1Task1Test" name="verifyInput" time="0.012"/>
+  <testcase classname="Unit1Task1Test" name="getSecondBigNumber" time="0"/>
 </testsuite>
