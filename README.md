@@ -2,14 +2,9 @@
 ___
 
 ### Рабочее окружение:
-Аппаратное обеспечение:  
-* Motherboard ASUS X555LN;
-* Intel Core i5-4210U;
-* 8GB DDR3L-1600 PC-12800 SDRAM SODIMM;
-* 1TB Toshiba ROM
+Аппаратное обеспечение: _Motherboard ASUS X555LN;_ _Intel Core i5-4210U;_ _8GB DDR3L-1600 PC-12800 SDRAM SODIMM;_ _1TB Toshiba ROM_
 
-Операционная система:    
-* Windows 10 Pro 64-bit Build version 10.0.15063.483 (RS2)
+Операционная система: _Windows 10 Pro 64-bit Build version 10.0.15063.483 (RS2)_
 
 Java:                    
 * JDK 1.8.0_144                         
