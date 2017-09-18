@@ -16,7 +16,7 @@ Java:
 * JRE 1.8.0_144-b01
 
 Тестирование проекта:    
-* JUnit 4.12; Hamcrest
+* JUnit 4.12
 
 Сборка проекта:          
 * Apache Maven 3.5.0
