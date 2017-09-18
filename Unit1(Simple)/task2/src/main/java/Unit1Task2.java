@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
 /**
  * Программа выполняет разложение числа на набор простых множителей.
  *
@@ -14,6 +17,30 @@ public class Unit1Task2 {
     private static void println(String str) {
         System.out.println(str);
     } // println()
+
+    /**
+     * Получить набор чисел.
+     *
+     * @return набор чисел.
+     */
+    private static String getInput() {
+
+        Scanner scan = new Scanner(System.in);
+        String  str;
+
+        do {
+            System.out.printf("\nEnter the number you want to decompose into Prime factors:: ");
+            //System.out.printf("\nВведите число, которое необходимо разложить на простые множители: ");
+            str = scan.next();
+            if ( isNumber(str) ) { break; }
+            else println("Incorrect input! Retype the number, please.");
+//            println("Некорректный ввод! Повторите ввод числа.");
+        } while (true);
+
+        scan.close();
+
+        return str;
+    } // getInput()
 
     /**
      * Проверка строки на число.
@@ -47,25 +74,36 @@ public class Unit1Task2 {
     } // isNumber()
 
     /**
+     * Преобразование строкового типа в в целое число.
+     *
+     * @param str исходная строка.
+     * @return целое число.
+     */
+    private static Integer toInteger(String str) { return Integer.parseInt(str); } // toInteger()
+
+    /**
      * Разложить число на простые множители.
      *
-     * @param src исходное число.
+     * @param numb исходное число.
      * @return набор простых множителей.
      */
-    private static Integer[] decompositeTheNumber(Integer src) {
+    private static Integer[] decomposeTheNumber(Integer numb) {
+
+        //
+        //
+        //
+        //
+
         return new Integer[0];
-    } // decompositeTheNumber()
+    } // decomposeTheNumber()
 
     /**
      * Получить набор простых множителей.
      *
-     * @param src исходный набор простых множителей.
+     * @param str исходный набор простых множителей.
      * @return исходный набор простых множителей.
      */
-    public static Integer[] getSimpleMultipliers(String src) {
-
-        return new Integer[0];
-    } // getSimpleMultipliers()
+    public static Integer[] getPrimes(String str) { return decomposeTheNumber(toInteger(str)); } // getPrimes()
 
     /** */
     public static void main(String[] args) {
@@ -73,11 +111,11 @@ public class Unit1Task2 {
         println("The program performs the decomposition of numbers in a set of simple multipliers.");
 
         // Ввод аргументами через системную консоль.
-        if (args.length > 1){ if (0 < 1){ /* TO-DO */ }
+        if (args.length > 0) { if ( isNumber(args[0])) { Arrays.toString(getPrimes(args[0])); } }
         // Интерактивный ввод через системную консоль.
-        else { /* TO-DO */ }
+        else { Arrays.toString(getPrimes(getInput())); }
 
         println("\n");
     } // main()
+}// Unit1Task2
 
-} // Unit1Task2
