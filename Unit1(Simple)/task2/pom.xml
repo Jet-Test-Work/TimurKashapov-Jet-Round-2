@@ -6,7 +6,7 @@
 
     <groupId>su.jet.intern.timurkashapov</groupId>
     <artifactId>Unit1Task2</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -37,7 +37,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <!--<classpathPrefix>lib/</classpathPrefix>-->
-                            <mainClass>Unit1Task1</mainClass>
+                            <mainClass>Unit1Task2</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
