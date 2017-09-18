@@ -1,4 +1,3 @@
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -94,7 +93,7 @@ public class Unit1Task1Test {
         //
         assertEquals( Integer.valueOf(50) ,Unit1Task1.getSecondBigNumber(test10));
         assertEquals( Integer.valueOf(5) ,Unit1Task1.getSecondBigNumber(test11));
-        assertEquals( Integer.valueOf(51) ,Unit1Task1.getSecondBigNumber(test11));
+        assertEquals( Integer.valueOf(51) ,Unit1Task1.getSecondBigNumber(test12));
 
 
     }
