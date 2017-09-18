@@ -160,7 +160,7 @@ public class Unit1Task1 {
 
             // Если в строке не числовой символ - выбросить исключение.
             if ( ! isNumber(src[i]) ) {
-                println( "\n" + Arrays.toString(src));
+                println(Arrays.toString(src));
                 println("The element of the set is not a valid number ---> " + src[i]);
 //                println("Элемент набора является не числом ---> " + src[i]);
                 ++count;
@@ -232,7 +232,7 @@ public class Unit1Task1 {
             }
         } // for i
 
-        System.out.printf("\nThe second largest number in the set: %d\n\n", sMax);
+        System.out.printf("The second largest number in the set: %d\n", sMax);
 //        System.out.printf("\nВторое по величине число в наборе: %d\n\n", sMax);
 
         return sMax;
@@ -252,6 +252,8 @@ public class Unit1Task1 {
         if (args.length > 1){ if ( verifyInput(args) ) getSecondBigNumber(toIntegers(args)); }
         // Интерактивный ввод через системную консоль.
         else getSecondBigNumber(toIntegers(getInput()));
+
+        println("\n");
 
     } // main()
 } // Unit1Task1
