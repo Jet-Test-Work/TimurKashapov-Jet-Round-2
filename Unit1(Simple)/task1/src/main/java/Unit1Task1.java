@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Enumeration;
 import java.util.Scanner;
 
 /**
@@ -19,6 +20,10 @@ import java.util.Scanner;
  * https://github.com/Jet-Test-Work/Jet-Round-2/tree/master/Unit1(Simple)
  */
 public class Unit1Task1 {
+
+    static {
+        System.setProperty("file.encoding", System.getProperty("sun.jnu.encoding"));
+    }
 
     /**
      * Упрощённая запись System.out.println();
@@ -42,13 +47,13 @@ public class Unit1Task1 {
         Integer  d = 0;
 
         do {
-            System.out.printf("\nВведите количество элементов, составляющих набор чисел: ");
+            System.out.printf("\nВведите количество элементов, составляющих набор чисел (не менее двух): ");
             n = scan.next();
             if ( isNumber(n) ) {
                 d = Integer.parseInt(n);
                 if (d < 2) println("Введенное количество элементов набора некорректно! Повторите. ");
             }
-            else println("\nНекорректный ввод! Повторите ввод числа.");
+            else println("Некорректный ввод! Повторите ввод числа.");
         } while (d < 2);
 
         dist = new String[d];
@@ -75,23 +80,26 @@ public class Unit1Task1 {
      * @param src входные данные.
      * @return подтверждение.
      */
-    private static boolean verifyInput(String[] src) {
+    public static boolean verifyInput(String[] src) {
 
         boolean result = false;
 
         // Проверка входных данных на корректность.
         //
         // Набор не пустой ?
-        if ( src[0] != null ) {
+        if ( src != null ) {
+            //
+            if (src.length != 0) {
 
-            // Набор состоит из более чем 2-ух элементов ?
-            if (src.length >= 2) {
+                // Набор состоит из более чем 2-ух элементов ?
+                if (src.length >= 2) {
 
-                // Набор числовой ?
-                if (isArrayOfNumbers(src)) { result = true; }
+                    // Набор числовой ?
+                    if (isArrayOfNumbers(src)) { result = true; }
 
-            } else { println("Входящий набор состоит из одного элемента!"); }
-        } else { println("Входящий набор пуст!"); }
+                } else { println("Входящий набор состоит из менее двух элементов!"); }
+            } else { println("Входящий набор пуст!"); }
+        } else { println("Входящий набор NULL!"); }
 
         return result;
 
@@ -149,7 +157,7 @@ public class Unit1Task1 {
             // Если в строке не числовой символ - выбросить исключение.
             if ( ! isNumber(src[i]) ) {
                 println( "\n" + Arrays.toString(src));
-                println("Элементы набора являются не числами ---> " + src[i] + "\n");
+                println("Элемент набора является не числом ---> " + src[i]);
                 ++count;
             }
         } // for i
