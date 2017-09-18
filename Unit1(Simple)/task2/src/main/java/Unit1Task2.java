@@ -29,7 +29,7 @@ public class Unit1Task2 {
         String  str;
 
         do {
-            System.out.printf("\nEnter the number you want to decompose into Prime factors:: ");
+            System.out.printf("\nEnter the number you want to decompose into Prime factors: ");
             //System.out.printf("\nВведите число, которое необходимо разложить на простые множители: ");
             str = scan.next();
             if ( isNumber(str) ) { break; }
@@ -79,7 +79,14 @@ public class Unit1Task2 {
      * @param str исходная строка.
      * @return целое число.
      */
-    private static Integer toInteger(String str) { return Integer.parseInt(str); } // toInteger()
+    private static Long toInteger(String str) {
+
+        Long numb = null;
+
+        try { numb = Long.parseLong(str); } catch (NumberFormatException e) { e.printStackTrace(); }
+
+        return numb;
+    } // toInteger()
 
     /**
      * Разложить число на простые множители.
@@ -87,7 +94,7 @@ public class Unit1Task2 {
      * @param numb исходное число.
      * @return набор простых множителей.
      */
-    private static Integer[] decomposeTheNumber(Integer numb) {
+    private static Long[] decomposeTheNumber(Long numb) {
 
         //
         //
@@ -95,7 +102,7 @@ public class Unit1Task2 {
         //
         println("DONE!");
 
-        return new Integer[0];
+        return new Long[0];
     } // decomposeTheNumber()
 
     /**
@@ -104,12 +111,12 @@ public class Unit1Task2 {
      * @param str исходный набор простых множителей.
      * @return исходный набор простых множителей.
      */
-    public static Integer[] getPrimes(String str) { return decomposeTheNumber(toInteger(str)); } // getPrimes()
+    public static Long[] getPrimes(String str) { return decomposeTheNumber(toInteger(str)); } // getPrimes()
 
     /** */
     public static void main(String[] args) {
 
-        println("The program performs the decomposition of numbers in a set of simple multipliers.");
+        println("\nThe program performs the decomposition of numbers in a set of simple multipliers.");
 
         // Ввод аргументами через системную консоль.
         if (args.length > 0) {
