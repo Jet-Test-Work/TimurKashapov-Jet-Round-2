@@ -68,7 +68,7 @@ public class Unit1Task3Test {
     }
 
     @Test
-    public void clean() {
+    public void clear() {
 
         // Тестирование на удаление символов пробела, пунктуации, спец. символов.
         //
@@ -77,7 +77,7 @@ public class Unit1Task3Test {
         char[] testAct01 = new char[]{'N', '0', '-', 'E', 'r', 'r', 'o', 'r', 's', '.', '.', '.'};
         char[] testExt01 = new char[]{'N', '0', 'E', 'r', 'r', 'o', 'r', 's'};
         //
-        assertArrayEquals( testExt00, Unit1Task3.clean(testAct00) );
-        assertArrayEquals( testExt01, Unit1Task3.clean(testAct01) );
+        assertArrayEquals( testExt00, Unit1Task3.clear(testAct00) );
+        assertArrayEquals( testExt01, Unit1Task3.clear(testAct01) );
     }
 }
