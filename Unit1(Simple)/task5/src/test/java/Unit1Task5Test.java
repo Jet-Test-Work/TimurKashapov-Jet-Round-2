@@ -3,7 +3,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertArrayEquals;
 
 public class Unit1Task5Test {
-    
+
     @Test
     public void toCharacterArray() throws Exception {
 
@@ -21,5 +21,10 @@ public class Unit1Task5Test {
         assertArrayEquals( testCha00, Unit1Task5.toCharacterArray(testStr00) );
         assertArrayEquals( testCha01, Unit1Task5.toCharacterArray(testStr01) );
         assertArrayEquals( testCha02, Unit1Task5.toCharacterArray(testStr03) );
+    }
+
+    @Test
+    public void searchSubstring() {
+
     }
 }
