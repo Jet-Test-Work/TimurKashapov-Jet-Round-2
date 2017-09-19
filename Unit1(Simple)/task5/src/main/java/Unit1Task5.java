@@ -43,7 +43,7 @@ public class Unit1Task5 {
         char[] charsOfSubStr = toCharacterArray(subStr);
 
 
-        
+
 
 
 
