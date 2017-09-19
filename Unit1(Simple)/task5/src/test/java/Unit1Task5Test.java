@@ -10,17 +10,21 @@ public class Unit1Task5Test {
         // Тестирование преобразования строки в массив символов.
         //
         char[] testCha00 = new char[]{};
-        String testStr00 = "";
+        String testStr00 = null;
 
-        char[] testCha01 = new char[]{'s'};
-        String testStr01 = "s";
+        char[] testCha01 = new char[]{};
+        String testStr01 = "";
 
-        char[] testCha02 = new char[]{'s','2','1','-','=','+',};
+        char[] testCha02 = new char[]{'s'};
+        String testStr02 = "s";
+
+        char[] testCha03 = new char[]{'s','2','1','-','=','+',};
         String testStr03 = "s21-=+";
 
         assertArrayEquals( testCha00, Unit1Task5.toCharacterArray(testStr00) );
         assertArrayEquals( testCha01, Unit1Task5.toCharacterArray(testStr01) );
-        assertArrayEquals( testCha02, Unit1Task5.toCharacterArray(testStr03) );
+        assertArrayEquals( testCha02, Unit1Task5.toCharacterArray(testStr02) );
+        assertArrayEquals( testCha03, Unit1Task5.toCharacterArray(testStr03) );
     }
 
     @Test
