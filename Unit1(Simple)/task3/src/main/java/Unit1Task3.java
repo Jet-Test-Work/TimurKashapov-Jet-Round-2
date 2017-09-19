@@ -50,6 +50,23 @@ public class Unit1Task3 {
     } // toCharacterArray()
 
     /**
+     *  Возвращает подстверждение, если сивол является спец. символом.
+     *
+     * @param ch исходный символ.
+     * @return подтверждение.
+     */
+    public static boolean isSpecs(char ch) {
+
+        char[] specs  = {
+                '~', '@', '#', '$', '%', '&', '*', '_', '=', '+',
+                '[', ']', '{', '}', '>', '/', '<', '^', '`', '\\'};
+
+        for (int i = 0; i < specs.length; ++i) { if (ch == specs[i]) return true; } // for i
+
+        return false;
+    } // isSpecs()
+
+    /**
      * Возвращает подтверждение, если символ является символом пунктуации.
      *
      * @param ch символ.
@@ -57,6 +74,8 @@ public class Unit1Task3 {
      */
     public static boolean isPunctuation(char ch) {
 
+        // '\u0027' = '\''
+        // '\u0022' - '\"'
         char[] punctua = {' ', '.', ',',  '!',  '?', '-', ':', ';', '\'', '\"', '(', ')' };
 
         for (int i = 0; i < punctua.length; ++i) { if (ch == punctua[i]) return true; } // for i
@@ -84,22 +103,6 @@ public class Unit1Task3 {
     } // punctuationsOf()
 
     /**
-     * Удаление символов пробела из массива символов.
-     *
-     * @param src исходный массив.
-     * @return массив символов без символов пробела.
-     */
-    public static char[] clearSpaces(char[] src) {
-
-        char[] arr = new char[src.length - spacesOf(src)];
-        int k = 0;
-
-        for (int i = 0; i < src.length; ++i) { if ( ! (src[i] == ' ') ) arr[k++] = src[i]; } // for i
-
-        return arr;
-    } // clearSpaces()
-
-    /**
      * Возвращает количество символов пробела в массиве символов.
      *
      * @param src исходный массив.
@@ -117,6 +120,22 @@ public class Unit1Task3 {
     } // spacesOf()
 
     /**
+     * Удаление символов пробела из массива символов.
+     *
+     * @param src исходный массив.
+     * @return массив символов без символов пробела.
+     */
+    public static char[] clearSpaces(char[] src) {
+
+        char[] arr = new char[src.length - spacesOf(src)];
+        int k = 0;
+
+        for (int i = 0; i < src.length; ++i) { if ( ! (src[i] == ' ') ) arr[k++] = src[i]; } // for i
+
+        return arr;
+    } // clearSpaces()
+
+    /**
      * Удаление знаков препинания.
      *
      * @param src массив символов.
@@ -127,7 +146,9 @@ public class Unit1Task3 {
         char[] clean = new char[ src.length - punctuationsOf(src) ];
         int k = 0;
 
-        for (int i = 0; i < src.length; ++i) { if ( ! isPunctuation(src[i]) ) clean[k++] = src[i]; } // for i
+        for (int i = 0; i < src.length; ++i) {
+            if ( ! isPunctuation(src[i]) && ! isSpecs(src[i]) ) clean[k++] = src[i];
+        } // for i
 
         return clean;
     } // clear()

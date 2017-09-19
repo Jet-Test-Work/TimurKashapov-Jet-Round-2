@@ -76,8 +76,11 @@ public class Unit1Task3Test {
         char[] testExt00 = new char[]{'H', 'e', 'l', 'l', 'o', 'W', 'o', 'r', 'l', 'd'};
         char[] testAct01 = new char[]{'N', '0', '-', 'E', 'r', 'r', 'o', 'r', 's', '.', '.', '.'};
         char[] testExt01 = new char[]{'N', '0', 'E', 'r', 'r', 'o', 'r', 's'};
+        char[] testAct02 = new char[]{'+', '1', '-', '!', '.', '/', '\'', '\"', 'o'};
+        char[] testExt02 = new char[]{'1', 'o',};
         //
         assertArrayEquals( testExt00, Unit1Task3.clear(testAct00) );
         assertArrayEquals( testExt01, Unit1Task3.clear(testAct01) );
+        assertArrayEquals( testExt02, Unit1Task3.clear(testAct02) );
     }
 }
