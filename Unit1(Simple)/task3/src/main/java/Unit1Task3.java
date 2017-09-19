@@ -50,21 +50,6 @@ public class Unit1Task3 {
     } // toCharacterArray()
 
     /**
-     * Возвращает подтверждение, если символ является символом пунктуации.
-     *
-     * @param ch символ.
-     * @return подстверждение.
-     */
-    public static boolean isPunctuation(char ch) {
-
-        char[] punctua = {' ', '.', ',',  '!',  '?', '-', ':', ';', '\'', '\"', '(', ')' };
-
-        for (int i = 0; i < punctua.length; ++i) { if (ch == punctua[i]) return true; } // for i
-
-        return false;
-    } // isPunctuation()
-
-    /**
      *  Возвращает подстверждение, если сивол является спец. символом.
      *
      * @param ch исходный символ.
@@ -74,7 +59,7 @@ public class Unit1Task3 {
 
         char[] specs  = {
                 '~', '@', '#', '$', '%', '&', '*', '_', '=', '+',
-                '[', ']', '{', '}', '>', '/', '<', '^', '`', };
+                '[', ']', '{', '}', '>', '/', '<', '^', '`', '\\'};
 
         for (int i = 0; i < specs.length; ++i) { if (ch == specs[i]) return true; } // for i
 
@@ -82,12 +67,21 @@ public class Unit1Task3 {
     } // isSpecs()
 
     /**
-     * Подтверждение является ли символ числом.
+     * Возвращает подтверждение, если символ является символом пунктуации.
      *
-     * @param ch исходный сисвол.
-     * @return подтверждение.
+     * @param ch символ.
+     * @return подстверждение.
      */
-    private static boolean isNumber(char ch) { return ch >= '0' && ch <= '9'; } // isNumber()
+    public static boolean isPunctuation(char ch) {
+
+        // '\u0027' = '\''
+        // '\u0022' - '\"'
+        char[] punctua = {' ', '.', ',',  '!',  '?', '-', ':', ';', '\'', '\"', '(', ')' };
+
+        for (int i = 0; i < punctua.length; ++i) { if (ch == punctua[i]) return true; } // for i
+
+        return false;
+    } // isPunctuation()
 
     /**
      * Сколько знаков препинания (пунктуации) в массиве символов.
@@ -95,7 +89,7 @@ public class Unit1Task3 {
      * @param src массив символов.
      * @return количество.
      */
-    public static int punctuations(char[] src) {
+    public static int punctuationsOf(char[] src) {
 
         if (src == null) return 0;
 
@@ -106,7 +100,40 @@ public class Unit1Task3 {
         for (int i = 0; i < src.length; ++i) { if ( isPunctuation(src[i]) ) ++pCounter; } // for i
 
         return pCounter;
-    } // punctuations()
+    } // punctuationsOf()
+
+    /**
+     * Возвращает количество символов пробела в массиве символов.
+     *
+     * @param src исходный массив.
+     * @return количество пробеллов.
+     */
+    private static int spacesOf(char[] src) {
+
+        // Счетчик символов пробела.
+        int pCounter = 0;
+
+        for (int i = 0; i < src.length; ++i) { if ( (src[i] == ' ') ) ++pCounter; } // for i
+
+        return pCounter;
+
+    } // spacesOf()
+
+    /**
+     * Удаление символов пробела из массива символов.
+     *
+     * @param src исходный массив.
+     * @return массив символов без символов пробела.
+     */
+    public static char[] clearSpaces(char[] src) {
+
+        char[] arr = new char[src.length - spacesOf(src)];
+        int k = 0;
+
+        for (int i = 0; i < src.length; ++i) { if ( ! (src[i] == ' ') ) arr[k++] = src[i]; } // for i
+
+        return arr;
+    } // clearSpaces()
 
     /**
      * Удаление знаков препинания.
@@ -114,18 +141,17 @@ public class Unit1Task3 {
      * @param src массив символов.
      * @return массив символов.
      */
-    public static char[] clean(char[] src) {
+    public static char[] clear(char[] src) {
 
-        char[] clean = new char[ src.length - punctuations(src) ];
+        char[] clean = new char[ src.length - punctuationsOf(src) ];
         int k = 0;
 
         for (int i = 0; i < src.length; ++i) {
-            if ( ! isPunctuation(src[i]) ) clean[k++] = src[i];
-            else src[i] = 0;
+            if ( ! isPunctuation(src[i]) && ! isSpecs(src[i]) ) clean[k++] = src[i];
         } // for i
 
         return clean;
-    } // clean()
+    } // clear()
 
     /**
      * Является ли строка полиндромом.
