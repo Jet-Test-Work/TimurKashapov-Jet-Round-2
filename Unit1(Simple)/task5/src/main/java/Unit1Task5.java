@@ -31,6 +31,52 @@ public class Unit1Task5 {
     } // toCharacterArray()
 
     /**
+     * Сколько знаков препинания (пунктуации) в массиве символов.
+     *
+     * @param src массив символов.
+     * @return количество.
+     */
+    public static int punctuations(char[] src) {
+
+        if (src == null) return 0;
+
+        // Символы пунктуаций.
+        int pCounter = 0;
+        char[] punctua = {
+                '.', ',',  '!',  '?', '-',
+                ':', ';', '\'', '\"', '(',
+                ')', };
+
+        // Специальные символы
+        int sCounter = 0;
+        char[] specs  = {
+                '~', '@', '#', '$', '%',
+                '&', '*', '_', '=', '+',
+                '[', ']', '{', '}', '>',
+                '/', '<', '^', '`', };
+
+        for (int i = 0; i < src.length; i++) {
+            for (int j = 0; j < punctua.length; j++) {
+                if (src[i] == punctua[j]) ++pCounter;
+            } // for j
+        } // for i
+
+        return pCounter;
+    } // punctuations()
+
+
+    /**
+     * Удаление знаков препинания.
+     *
+     * @param src массив символов.
+     * @return массив символов.
+     */
+    public static char[] clean(char[] src) {
+
+        char[] res
+    } // clean()
+
+    /**
      * Поиск подстроки в строке.
      *
      * @param str строка.
