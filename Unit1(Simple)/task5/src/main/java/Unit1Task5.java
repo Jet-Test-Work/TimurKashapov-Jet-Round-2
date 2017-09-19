@@ -31,6 +31,46 @@ public class Unit1Task5 {
     } // toCharacterArray()
 
     /**
+     * Возвращает подтверждение, если символ является символом пунктуации.
+     *
+     * @param ch символ.
+     * @return подстверждение.
+     */
+    public static boolean isPunctuation(char ch) {
+
+        char[] punctua = {' ', '.', ',',  '!',  '?', '-', ':', ';', '\'', '\"', '(', ')' };
+
+        for (int i = 0; i < punctua.length; ++i) { if (ch == punctua[i]) return true; } // for i
+
+        return false;
+    } // isPunctuation()
+
+    /**
+     *  Возвращает подстверждение, если сивол является спец. символом.
+     *
+     * @param ch исходный символ.
+     * @return подтверждение.
+     */
+    public static boolean isSpecs(char ch) {
+
+        char[] specs  = {
+                '~', '@', '#', '$', '%', '&', '*', '_', '=', '+',
+                '[', ']', '{', '}', '>', '/', '<', '^', '`', };
+
+        for (int i = 0; i < specs.length; ++i) { if (ch == specs[i]) return true; } // for i
+
+        return false;
+    } // isSpecs()
+
+    /**
+     * Подтверждение является ли символ числом.
+     *
+     * @param ch исходный сисвол.
+     * @return подтверждение.
+     */
+    private static boolean isNumber(char ch) { return ch >= '0' && ch <= '9'; } // isNumber()
+
+    /**
      * Сколько знаков препинания (пунктуации) в массиве символов.
      *
      * @param src массив символов.
@@ -40,41 +80,14 @@ public class Unit1Task5 {
 
         if (src == null) return 0;
 
-        // Символы пунктуаций.
+        // Счетчик символов пунктуаций.
         int pCounter = 0;
-        char[] punctua = {
-                '.', ',',  '!',  '?', '-',
-                ':', ';', '\'', '\"', '(',
-                ')', };
+        int pLen     = 12;
 
-        // Специальные символы
-        int sCounter = 0;
-        char[] specs  = {
-                '~', '@', '#', '$', '%',
-                '&', '*', '_', '=', '+',
-                '[', ']', '{', '}', '>',
-                '/', '<', '^', '`', };
-
-        for (int i = 0; i < src.length; i++) {
-            for (int j = 0; j < punctua.length; j++) {
-                if (src[i] == punctua[j]) ++pCounter;
-            } // for j
-        } // for i
+        for (int i = 0; i < src.length; ++i) { if ( isPunctuation(src[i]) ) ++pCounter; } // for i
 
         return pCounter;
     } // punctuations()
-
-
-    /**
-     * Удаление знаков препинания.
-     *
-     * @param src массив символов.
-     * @return массив символов.
-     */
-    public static char[] clean(char[] src) {
-
-        char[] res
-    } // clean()
 
     /**
      * Поиск подстроки в строке.

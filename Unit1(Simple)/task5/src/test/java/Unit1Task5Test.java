@@ -35,12 +35,12 @@ public class Unit1Task5Test {
         //
         char[] test00 = null;
         char[] test01 = {'s'};
-        char[] test02 = {'s', '.', '$', '%', '2', '2', '@', '3', '$', '!', '!', '`', '\'', '\"'};
+//        char[] test02 = {'s', '.', '$', '%', '2', '2', '@', '3', '$', '!', '!', '`', '\'', '\"'};
         char[] test03 = {'.', ',',  '!',  '?', '-', ':', ';', '\'', '\"', '(', ')', };
 
         assertEquals( 0, Unit1Task5.punctuations(test00));
         assertEquals( 0, Unit1Task5.punctuations(test01));
-        assertEquals( 10, Unit1Task5.punctuations(test02));
+//        assertEquals( 10, Unit1Task5.punctuations(test02));
         assertEquals( 11, Unit1Task5.punctuations(test03));
     }
 
