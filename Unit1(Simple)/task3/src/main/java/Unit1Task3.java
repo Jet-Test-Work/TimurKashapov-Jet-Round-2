@@ -165,22 +165,38 @@ public class Unit1Task3 {
         char[] arr = new char[src.length];
         int k = 0;
 
-        for (int i = src.length - 1; i >= 0  ; i++) { arr[k++] = src[i]; } // for i
+        for (int i = src.length - 1; i >= 0  ; --i) { arr[k++] = src[i]; } // for i
 
         return arr;
     } // reverse()
 
     /**
-     * Является ли строка полиндромом.
+     * Проверка на равносильность двух массивов строк.
      *
-     * @param arg исходдные строка
+     * @param arr1 первый массив.
+     * @param arr2 второй массив.
      * @return подстверждение.
      */
-    public static boolean isPalindrome(String arg) {
+    public static boolean check(char[] arr1, char[] arr2 ) {
 
-        boolean result = false;
+        int counter = 0;
 
-        return result;
+        if ( arr1.length == arr2.length ) for (int i = 0; i < arr1.length; ++i) if ( arr1[i] == arr2[i] ) ++counter;
+        else return false;
+
+        return counter == arr1.length;
+
+    } // check()
+
+    /**
+     * Является ли строка полиндромом.
+     *
+     * @param str исходдные строка
+     * @return подстверждение.
+     */
+    public static boolean isPalindrome(String str) {
+
+        return check(clear(toCharacterArray(str)), reverse(clear(toCharacterArray(str))));
     } // isPalindrome()
 
     /**
