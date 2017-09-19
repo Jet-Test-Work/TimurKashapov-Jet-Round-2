@@ -75,7 +75,9 @@ public class Unit1Task3 {
     public static boolean isPunctuation(char ch) {
 
         // '\u0027' = '\''
-        // '\u0022' - '\"'
+        // '\u0022' = '\"'
+        // 39 = '\''
+        // 34 = '\"'
         char[] punctua = {' ', '.', ',',  '!',  '?', '-', ':', ';', '\'', '\"', '(', ')' };
 
         for (int i = 0; i < punctua.length; ++i) { if (ch == punctua[i]) return true; } // for i
@@ -95,9 +97,8 @@ public class Unit1Task3 {
 
         // Счетчик символов пунктуаций.
         int pCounter = 0;
-        int pLen     = 12;
 
-        for (int i = 0; i < src.length; ++i) { if ( isPunctuation(src[i]) ) ++pCounter; } // for i
+        for (int i = 0; i < src.length; ++i) { if ( isPunctuation(src[i]) || isSpecs(src[i]) ) ++pCounter; } // for i
 
         return pCounter;
     } // punctuationsOf()
@@ -152,6 +153,22 @@ public class Unit1Task3 {
 
         return clean;
     } // clear()
+
+    /**
+     * Инвертация массива символов.
+     *
+     * @param src исходные массив.
+     * @return инвертированный массив.
+     */
+    public static char[] reverse(char[] src) {
+
+        char[] arr = new char[src.length];
+        int k = 0;
+
+        for (int i = src.length - 1; i >= 0  ; i++) { arr[k++] = src[i]; } // for i
+
+        return arr;
+    } // reverse()
 
     /**
      * Является ли строка полиндромом.
