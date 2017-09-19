@@ -1,7 +1,8 @@
 import org.junit.Test;
 
 import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 public class Unit1Task5Test {
 
@@ -29,23 +30,33 @@ public class Unit1Task5Test {
     }
 
     @Test
-    public void punctuations() {
-
-        // Тестирование на количество знаков препинания в массив символов.
-        //
-        char[] test00 = null;
-        char[] test01 = {'s'};
-//        char[] test02 = {'s', '.', '$', '%', '2', '2', '@', '3', '$', '!', '!', '`', '\'', '\"'};
-        char[] test03 = {'.', ',',  '!',  '?', '-', ':', ';', '\'', '\"', '(', ')', };
-
-        assertEquals( 0, Unit1Task5.punctuations(test00));
-        assertEquals( 0, Unit1Task5.punctuations(test01));
-//        assertEquals( 10, Unit1Task5.punctuations(test02));
-        assertEquals( 11, Unit1Task5.punctuations(test03));
-    }
-
-    @Test
     public void searchSubstring() {
 
+        // Тестирование на вхождение подстроки в строке.
+        //
+        String testStr00 = "abracadabra";
+        String testSub00 = "cada";
+        //
+        String testStr01 = "hello World my amazing friends!";
+        String testSub01 = "!";
+        //
+        String testStr02 = "55 + 66 = 121";
+        String testSub02 = "121";
+        //
+        assertTrue( Unit1Task5.searchSubstring(testStr00, testSub00) );
+        assertTrue( Unit1Task5.searchSubstring(testStr01, testSub01) );
+        assertTrue( Unit1Task5.searchSubstring(testStr02, testSub02) );
+
+
+        // Тестирование на не вхождение подстроки в строке.
+        //
+        String testStr10 = "error";
+        String testSub10 = "oro";
+        //
+        String testStr11 = "linux foundation";
+        String testSub11 = "xfc";
+        //
+        assertFalse( Unit1Task5.searchSubstring(testStr10, testSub10) );
+        assertFalse( Unit1Task5.searchSubstring(testStr11, testSub11) );
     }
 }

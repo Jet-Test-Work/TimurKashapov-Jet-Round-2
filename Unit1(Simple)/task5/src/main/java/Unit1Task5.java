@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 /**
  * Программа выполняет поиск подстроки в строке.
  *
@@ -12,6 +14,30 @@ public class Unit1Task5 {
      * @param str строка для вывода.
      */
     private static void println(String str) { System.out.println("\n" + str); } // println()
+
+    /**
+     * Получить строку.
+     *
+     * @return строка.
+     */
+    private static void getInput() {
+
+        System.out.printf("\nEnter the string: ");
+        //System.out.printf("\nВведите строку: ");
+
+        Scanner scan = new Scanner(System.in);
+        String str = scan.nextLine();
+
+        System.out.printf("\nEnter the substring: ");
+        //System.out.printf("\nВведите подстроку: ");
+        String sub = scan.nextLine();
+
+        scan.close();
+
+        if (searchSubstring(str, sub)) println("Yes");
+        else println("No");
+
+    } // getInput()
 
     /**
      * Преобразование строки в массив символов.
@@ -31,77 +57,30 @@ public class Unit1Task5 {
     } // toCharacterArray()
 
     /**
-     * Возвращает подтверждение, если символ является символом пунктуации.
-     *
-     * @param ch символ.
-     * @return подстверждение.
-     */
-    public static boolean isPunctuation(char ch) {
-
-        char[] punctua = {' ', '.', ',',  '!',  '?', '-', ':', ';', '\'', '\"', '(', ')' };
-
-        for (int i = 0; i < punctua.length; ++i) { if (ch == punctua[i]) return true; } // for i
-
-        return false;
-    } // isPunctuation()
-
-    /**
-     *  Возвращает подстверждение, если сивол является спец. символом.
-     *
-     * @param ch исходный символ.
-     * @return подтверждение.
-     */
-    public static boolean isSpecs(char ch) {
-
-        char[] specs  = {
-                '~', '@', '#', '$', '%', '&', '*', '_', '=', '+',
-                '[', ']', '{', '}', '>', '/', '<', '^', '`', };
-
-        for (int i = 0; i < specs.length; ++i) { if (ch == specs[i]) return true; } // for i
-
-        return false;
-    } // isSpecs()
-
-    /**
-     * Подтверждение является ли символ числом.
-     *
-     * @param ch исходный сисвол.
-     * @return подтверждение.
-     */
-    private static boolean isNumber(char ch) { return ch >= '0' && ch <= '9'; } // isNumber()
-
-    /**
-     * Сколько знаков препинания (пунктуации) в массиве символов.
-     *
-     * @param src массив символов.
-     * @return количество.
-     */
-    public static int punctuations(char[] src) {
-
-        if (src == null) return 0;
-
-        // Счетчик символов пунктуаций.
-        int pCounter = 0;
-        int pLen     = 12;
-
-        for (int i = 0; i < src.length; ++i) { if ( isPunctuation(src[i]) ) ++pCounter; } // for i
-
-        return pCounter;
-    } // punctuations()
-
-    /**
      * Поиск подстроки в строке.
      *
      * @param str строка.
      * @param subStr подстрока.
      * @return подтвержение.
      */
-    private static boolean searchSubstring(String str, String subStr) {
+    public static boolean searchSubstring(String str, String subStr) {
 
-        boolean result = false;
-
+        boolean result       = false;
         char[] charsOfStr    = toCharacterArray(str);
         char[] charsOfSubStr = toCharacterArray(subStr);
+        int strLen           = charsOfStr.length;
+        int subLen           = charsOfSubStr.length;
+        int counter          = 0;
+
+        for (int i = 0; i <= strLen - subLen; ++i) {
+            for (int j = 0; j < subLen; ++j) {
+
+                if ( charsOfStr[i + j] == charsOfSubStr[j] ) { ++counter; }
+                if (counter == subLen) { result = true; break; }
+
+            } // for j
+            counter = 0;
+        } // for i
 
         return result;
     } // searchSubstring()
@@ -116,12 +95,11 @@ public class Unit1Task5 {
 //        println("Программа выполняет поиск подстроки в строке.");
 
         // Ввод аргументами через системную консоль.
-        if (args.length > 1) searchSubstring(args[0], args[1]);
+        if (args.length > 1)  if (searchSubstring(args[0], args[1])) { println("Yes");} else { println("No");}
         // Интерактивный ввод через системную консоль.
-        else
+        else getInput();
 
         println("\n");
 
     } // main()
-
 } // Unit1Task1
