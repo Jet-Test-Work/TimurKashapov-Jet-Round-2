@@ -32,7 +32,7 @@ public class Unit1Task5 {
      * Поиск подстроки в строке.
      *
      * @param str строка.
-     * @param substr подстрока.
+     * @param subStr подстрока.
      * @return подтвержение.
      */
     private static boolean searchSubstring(String str, String subStr) {
@@ -41,11 +41,6 @@ public class Unit1Task5 {
 
         char[] charsOfStr    = toCharacterArray(str);
         char[] charsOfSubStr = toCharacterArray(subStr);
-
-
-
-
-
 
         return result;
     } // searchSubstring()
