@@ -65,37 +65,12 @@ public class Unit1Task3 {
     } // isPunctuation()
 
     /**
-     *  Возвращает подстверждение, если сивол является спец. символом.
-     *
-     * @param ch исходный символ.
-     * @return подтверждение.
-     */
-    public static boolean isSpecs(char ch) {
-
-        char[] specs  = {
-                '~', '@', '#', '$', '%', '&', '*', '_', '=', '+',
-                '[', ']', '{', '}', '>', '/', '<', '^', '`', };
-
-        for (int i = 0; i < specs.length; ++i) { if (ch == specs[i]) return true; } // for i
-
-        return false;
-    } // isSpecs()
-
-    /**
-     * Подтверждение является ли символ числом.
-     *
-     * @param ch исходный сисвол.
-     * @return подтверждение.
-     */
-    private static boolean isNumber(char ch) { return ch >= '0' && ch <= '9'; } // isNumber()
-
-    /**
      * Сколько знаков препинания (пунктуации) в массиве символов.
      *
      * @param src массив символов.
      * @return количество.
      */
-    public static int punctuations(char[] src) {
+    public static int punctuationsOf(char[] src) {
 
         if (src == null) return 0;
 
@@ -106,7 +81,28 @@ public class Unit1Task3 {
         for (int i = 0; i < src.length; ++i) { if ( isPunctuation(src[i]) ) ++pCounter; } // for i
 
         return pCounter;
-    } // punctuations()
+    } // punctuationsOf()
+
+    public static char[] clearSpaces(char[] src) {
+
+        char[] arr = new char[src.length + 1 - spacesOf(src)];
+        int k = 0;
+
+        for (int i = 0; i < src.length; ++i) { if ( ! (src[i] == ' ') ) arr[k++] = src[i]; } // for i
+
+        return arr;
+    } // clearSpaces()
+
+    private static int spacesOf(char[] src) {
+
+        // Счетчик символов пробела.
+        int pCounter = 0;
+
+        for (int i = 0; i < src.length; ++i) { if ( (src[i] == ' ') ) ++pCounter; } // for i
+
+        return pCounter;
+
+    } // spacesOf()
 
     /**
      * Удаление знаков препинания.
@@ -116,7 +112,7 @@ public class Unit1Task3 {
      */
     public static char[] clean(char[] src) {
 
-        char[] clean = new char[ src.length - punctuations(src) ];
+        char[] clean = new char[ src.length - punctuationsOf(src) ];
         int k = 0;
 
         for (int i = 0; i < src.length; ++i) {
