@@ -19,12 +19,13 @@ public class Unit1Task5 {
      * @param str строкаю
      * @return массив символов.
      */
-    public char[] toCharacterArray(String str) {
+    public static char[] toCharacterArray(String str) {
 
-        
+        char[] arr = new char[str.length()];
 
+        for (int i = 0; i < arr.length; ++i) { arr[i] = str.charAt(i); }
 
-        return new char[0];
+        return arr;
     } // toCharacterArray()
 
     /**
@@ -34,7 +35,20 @@ public class Unit1Task5 {
      * @param substr подстрока.
      * @return подтвержение.
      */
-    private static boolean searchSubstring(String str, String substr) { return false; } // searchSubstring()
+    private static boolean searchSubstring(String str, String subStr) {
+
+        boolean result = false;
+
+        char[] charsOfStr    = toCharacterArray(str);
+        char[] charsOfSubStr = toCharacterArray(subStr);
+
+
+        
+
+
+
+        return result;
+    } // searchSubstring()
 
     /**
      * Main.
