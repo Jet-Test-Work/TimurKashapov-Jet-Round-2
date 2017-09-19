@@ -67,6 +67,6 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="Unit1Task5Test" name="searchSubstring" time="0.007"/>
-  <testcase classname="Unit1Task5Test" name="toCharacterArray" time="0.004"/>
+  <testcase classname="Unit1Task5Test" name="searchSubstring" time="0.01"/>
+  <testcase classname="Unit1Task5Test" name="toCharacterArray" time="0.001"/>
 </testsuite>
