@@ -21,6 +21,8 @@ public class Unit1Task5 {
      */
     public static char[] toCharacterArray(String str) {
 
+        if (str == null) return new char[]{};
+
         char[] arr = new char[str.length()];
 
         for (int i = 0; i < arr.length; ++i) { arr[i] = str.charAt(i); }
