@@ -127,10 +127,7 @@ public class Unit1Task3 {
         char[] clean = new char[ src.length - punctuationsOf(src) ];
         int k = 0;
 
-        for (int i = 0; i < src.length; ++i) {
-            if ( ! isPunctuation(src[i]) ) clean[k++] = src[i];
-            else src[i] = 0;
-        } // for i
+        for (int i = 0; i < src.length; ++i) { if ( ! isPunctuation(src[i]) ) clean[k++] = src[i]; } // for i
 
         return clean;
     } // clear()
