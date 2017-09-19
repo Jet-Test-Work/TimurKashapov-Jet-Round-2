@@ -214,5 +214,6 @@ public class Unit1Task3 {
         else { if (isPalindrome(getInput())) println("Yes"); else println("No"); }
 
         println("\n");
+        
     } // main
 } // Unit1Task3
