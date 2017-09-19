@@ -83,9 +83,15 @@ public class Unit1Task3 {
         return pCounter;
     } // punctuationsOf()
 
+    /**
+     * Удаление символов пробела из массива символов.
+     *
+     * @param src исходный массив.
+     * @return массив символов без символов пробела.
+     */
     public static char[] clearSpaces(char[] src) {
 
-        char[] arr = new char[src.length + 1 - spacesOf(src)];
+        char[] arr = new char[src.length - spacesOf(src)];
         int k = 0;
 
         for (int i = 0; i < src.length; ++i) { if ( ! (src[i] == ' ') ) arr[k++] = src[i]; } // for i
@@ -93,6 +99,12 @@ public class Unit1Task3 {
         return arr;
     } // clearSpaces()
 
+    /**
+     * Возвращает количество символов пробела в массиве символов.
+     *
+     * @param src исходный массив.
+     * @return количество пробеллов.
+     */
     private static int spacesOf(char[] src) {
 
         // Счетчик символов пробела.
@@ -110,7 +122,7 @@ public class Unit1Task3 {
      * @param src массив символов.
      * @return массив символов.
      */
-    public static char[] clean(char[] src) {
+    public static char[] clear(char[] src) {
 
         char[] clean = new char[ src.length - punctuationsOf(src) ];
         int k = 0;
@@ -121,7 +133,7 @@ public class Unit1Task3 {
         } // for i
 
         return clean;
-    } // clean()
+    } // clear()
 
     /**
      * Является ли строка полиндромом.
