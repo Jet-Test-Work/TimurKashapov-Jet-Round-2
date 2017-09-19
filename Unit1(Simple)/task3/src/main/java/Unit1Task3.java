@@ -33,6 +33,101 @@ public class Unit1Task3 {
     } // getInput()
 
     /**
+     * Преобразование строки в массив символов.
+     *
+     * @param str строкаю
+     * @return массив символов.
+     */
+    public static char[] toCharacterArray(String str) {
+
+        if (str == null) return new char[]{};
+
+        char[] arr = new char[str.length()];
+
+        for (int i = 0; i < arr.length; ++i) { arr[i] = str.charAt(i); }
+
+        return arr;
+    } // toCharacterArray()
+
+    /**
+     * Возвращает подтверждение, если символ является символом пунктуации.
+     *
+     * @param ch символ.
+     * @return подстверждение.
+     */
+    public static boolean isPunctuation(char ch) {
+
+        char[] punctua = {' ', '.', ',',  '!',  '?', '-', ':', ';', '\'', '\"', '(', ')' };
+
+        for (int i = 0; i < punctua.length; ++i) { if (ch == punctua[i]) return true; } // for i
+
+        return false;
+    } // isPunctuation()
+
+    /**
+     *  Возвращает подстверждение, если сивол является спец. символом.
+     *
+     * @param ch исходный символ.
+     * @return подтверждение.
+     */
+    public static boolean isSpecs(char ch) {
+
+        char[] specs  = {
+                '~', '@', '#', '$', '%', '&', '*', '_', '=', '+',
+                '[', ']', '{', '}', '>', '/', '<', '^', '`', };
+
+        for (int i = 0; i < specs.length; ++i) { if (ch == specs[i]) return true; } // for i
+
+        return false;
+    } // isSpecs()
+
+    /**
+     * Подтверждение является ли символ числом.
+     *
+     * @param ch исходный сисвол.
+     * @return подтверждение.
+     */
+    private static boolean isNumber(char ch) { return ch >= '0' && ch <= '9'; } // isNumber()
+
+    /**
+     * Сколько знаков препинания (пунктуации) в массиве символов.
+     *
+     * @param src массив символов.
+     * @return количество.
+     */
+    public static int punctuations(char[] src) {
+
+        if (src == null) return 0;
+
+        // Счетчик символов пунктуаций.
+        int pCounter = 0;
+        int pLen     = 12;
+
+        for (int i = 0; i < src.length; ++i) { if ( isPunctuation(src[i]) ) ++pCounter; } // for i
+
+        return pCounter;
+    } // punctuations()
+
+    /**
+     * Удаление знаков препинания.
+     *
+     * @param src массив символов.
+     * @return массив символов.
+     */
+    public static char[] clean(char[] src) {
+
+        char[] clean = new char[ src.length - punctuations(src) ];
+        int k = 0;
+
+        for (int i = 0; i < src.length; ++i) {
+            if ( ! isPunctuation(src[i]) ) clean[k++] = src[i];
+            else src[i] = 0;
+        } // for i
+
+        return clean;
+    } // clean()
+
+    /**
      * Является ли строка полиндромом.
      *
      * @param arg исходдные строка
@@ -55,9 +150,9 @@ public class Unit1Task3 {
 //        println("Программа выполняет проверку строки на то, что она является полиндромом.");
 
         // Ввод аргументами через системную консоль.
-        if (args.length > 1){ isPalindrome(args[0]); }
+        if (args.length > 1) { if ( isPalindrome(args[0])) println("Yes"); else println("No"); }
         // Интерактивный ввод через системную консоль.
-        else isPalindrome(getInput());
+        else { if (isPalindrome(getInput())) println("Yes"); else println("No"); }
 
         println("\n");
 
