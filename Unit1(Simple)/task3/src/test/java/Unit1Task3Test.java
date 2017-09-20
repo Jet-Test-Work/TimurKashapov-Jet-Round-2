@@ -124,6 +124,7 @@ public class Unit1Task3Test {
         String test24 = ".";
         String test25 = "...";
         String test26 = "..,.";
+        String test27 = "Don’t nod";
         //
         assertTrue(Unit1Task3.isPalindrome(test20));
         assertTrue(Unit1Task3.isPalindrome(test21));
@@ -135,6 +136,11 @@ public class Unit1Task3Test {
         assertFalse(Unit1Task3.isPalindrome(test26));
         //
         String test30 = "Я иду с мечем судия";
+        String test31 = "А роза упала на лапу Азора";
+        String test32 = "ДОХОД";
+        String test33 = "Коростели летели, летели-летели, летели-летели, … , летели лет сорок.";
+        String test34 = "Ужас — ангел лёг на сажу.";
+
         //
         assertTrue(Unit1Task3.isPalindrome(test30));
     }

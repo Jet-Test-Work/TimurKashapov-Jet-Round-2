@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -196,7 +197,9 @@ public class Unit1Task3 {
      */
     public static boolean isPalindrome(String str) {
 
-        return check(clear(toCharacterArray(str)), reverse(clear(toCharacterArray(str))));
+        if (str==null || str.length()==0) return false;
+
+        return false;
     } // isPalindrome()
 
     /**
